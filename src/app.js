@@ -19,7 +19,7 @@ routes.get('/', (req, res) => {
     return res.send("hello world");
 });
 
-routes.use('/v1/taskManager', tasksController);
+routes.use('/taskManager/v1', tasksController);
 
 app.listen(port, (err) => {
     if(!err) {
