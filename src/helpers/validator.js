@@ -5,14 +5,14 @@ class validator{
         return false;
     }
     static validateTaskRequestInfo(taskInRequest){
-        if(taskInRequest && taskInRequest.description && taskInRequest.title && taskInRequest.flag){
+        if(taskInRequest && taskInRequest.description && taskInRequest.title && (typeof(taskInRequest.flag)=="boolean")){
             return false;
         }
         return true;
     }
-    static validateFlagInRequest(taskInRequest){
-        const flagStatus = ['Yet To Start','In progress','Completed'];
-        if(flagStatus.indexOf(taskInRequest.flag) < 0){
+    static validatePriorityInRequest(taskInRequest){
+        const flagStatus = ["low","medium","high"];
+        if(flagStatus.indexOf(taskInRequest.priority)<0){
             return true;
         }
         return false;
