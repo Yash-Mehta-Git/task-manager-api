@@ -25,7 +25,6 @@ tasksController.get('/tasks',(req,res)=>{
     }
 });
 
-
 tasksController.get('/tasks/:taskId',(req,res)=>{
     let taskIdInRequest = req.params.taskId;
     let data = readDataFromFile();
@@ -114,16 +113,18 @@ tasksController.get('/tasks/priority/:level',(req,res)=>{
     }
 
 });
-
+//This function helps to read the data from the file.
 function readDataFromFile(){
     let readPath = path.join(__dirname, 'tasks.json');
     let tasksData = fs.readFileSync(readPath,{encoding: 'utf-8', flag: 'r'});
     return JSON.parse(tasksData);
 }
+//This function helps to write the data into the file.
 function writeIntoFile(obj){
     let writePath = path.join(__dirname, '.', 'tasks.json');
     fs.writeFileSync(writePath, JSON.stringify(obj),{encoding: 'utf8',flag:'w'});
 }
+//This function converts the millisecond data into understandable date -- 1232412 => Fri Nov 24 2023
 function convertCreatedDateToISODate(obj){
     obj.forEach(element => {
         element.createdDate = new Date(element.createdDate).toDateString()
